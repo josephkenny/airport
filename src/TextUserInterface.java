@@ -57,6 +57,7 @@ public class TextUserInterface {
                     break;
                 case "3":
                     printAirplaneInfo();
+		    break;
                 default:
                     System.out.printf("%nEnter a valid command:%n");
                     break;
