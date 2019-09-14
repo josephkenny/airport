@@ -1,3 +1,3 @@
 # airport
 
-Application that manages an airport and its planes and flights
+Application that manages planes and flights at an airport
