@@ -1,13 +1,8 @@
 import java.util.Scanner;
 
 public class TextUserInterface {
-    private final Scanner scanner;
-    private final Airport airport;
-
-    public TextUserInterface(Scanner scanner, Airport airport) {
-        this.scanner = scanner;
-        this.airport = airport;
-    }
+    private final Scanner scanner = new Scanner(System.in);
+    private final Airport airport = new Airport();
 
     public void startAirportPanel() {
         System.out.printf("Airport panel%n--------------------%n");
@@ -57,7 +52,7 @@ public class TextUserInterface {
                     break;
                 case "3":
                     printAirplaneInfo();
-		    break;
+                    break;
                 default:
                     System.out.printf("%nEnter a valid command:%n");
                     break;
