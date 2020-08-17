@@ -21,7 +21,7 @@ public class TextUserInterface {
                     quit = true;
                     break;
                 case "1":
-                    addAirPlane();
+                    addAirplane();
                     break;
                 case "2":
                     addFlight();
@@ -77,7 +77,7 @@ public class TextUserInterface {
                 + "[x] Quit%n> ");
     }
 
-    private void addAirPlane() {
+    private void addAirplane() {
         System.out.print("Give plane ID: ");
         String id = scanner.nextLine();
 
