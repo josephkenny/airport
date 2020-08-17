@@ -1,8 +1,10 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class TextUserInterface {
     private final Scanner scanner = new Scanner(System.in);
-    private final Airport airport = new Airport();
+    private final HashMap<String, Airplane> airplanes = new HashMap<>();
+    private final HashMap<String, Flight> flights = new HashMap<>();
 
     public void startAirportPanel() {
         System.out.printf("Airport panel%n--------------------%n");
@@ -19,7 +21,7 @@ public class TextUserInterface {
                     quit = true;
                     break;
                 case "1":
-                    addPlane();
+                    addAirPlane();
                     break;
                 case "2":
                     addFlight();
@@ -45,10 +47,10 @@ public class TextUserInterface {
                     quit = true;
                     break;
                 case "1":
-                    airport.printAirplanes();
+                    printAirplanes();
                     break;
                 case "2":
-                    airport.printFlights();
+                    printFlights();
                     break;
                 case "3":
                     printAirplaneInfo();
@@ -75,19 +77,20 @@ public class TextUserInterface {
                 + "[x] Quit%n> ");
     }
 
-    private void addPlane() {
+    private void addAirPlane() {
         System.out.print("Give plane ID: ");
         String id = scanner.nextLine();
 
         System.out.print("Give plane capacity: ");
         int capacity = Integer.parseInt(scanner.nextLine());
 
-        airport.addAirplane(id, capacity);
+        airplanes.put(id, new Airplane(id, capacity));
     }
 
     private void addFlight() {
         System.out.print("Give plane ID: ");
         String id = scanner.nextLine();
+        Airplane airplane = airplanes.get(id);
 
         System.out.print("Give departure airport code: ");
         String departureAirportCode = scanner.nextLine();
@@ -95,13 +98,31 @@ public class TextUserInterface {
         System.out.print("Give destination airport code: ");
         String destinationAirportCode = scanner.nextLine();
 
-        airport.addFlight(id, departureAirportCode, destinationAirportCode);
+        Flight flight = new Flight(airplane, departureAirportCode, destinationAirportCode);
+        flights.put(id, flight);
+    }
+
+    private void printAirplanes() {
+        for (Airplane plane : airplanes.values()) {
+            System.out.println(plane);
+        }
+    }
+
+    private void printFlights() {
+        for (Flight flight : flights.values()) {
+            System.out.println(flight);
+        }
     }
 
     private void printAirplaneInfo() {
         System.out.print("Give plane ID: ");
         String id = scanner.nextLine();
 
-        airport.printAirplaneInfo(id);
+        if (airplanes.containsKey(id)) {
+            Airplane airplane = airplanes.get(id);
+            System.out.println(airplane);
+        } else {
+            System.out.println("Plane with ID " + id + " does not exist.");
+        }
     }
 }
